@@ -24,3 +24,9 @@ class LoginTest(unittest.TestCase):
         self.lp.login_page(email="1002@email.com", password="acbacb")
         time.sleep(2)
         assert self.lp.verify_login_failed() is True  # Verify login not successful
+
+    @pytest.mark.run(order=1)
+    def test_incomplete_login(self):
+        self.lp.login_page(email="", password="acbacb")
+        time.sleep(2)
+        assert self.lp.verify_login_failed() is True  # Verify login not successful
